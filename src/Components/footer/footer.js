@@ -1,5 +1,5 @@
 const Footer = () => {
-  const footerstyle = `bg-gray-100 border-t border-gray-200 px-52 pt-5 pb-5`;
+  const footerstyle = `bg-gray-100 border-t border-gray-200 md:px-52 pt-5 pb-5 px-10`;
 
   return (
     <div class={footerstyle}>
