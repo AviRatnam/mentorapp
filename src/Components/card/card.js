@@ -1,4 +1,4 @@
-import Speechbubble from "./speechbubble";
+// import Speechbubble from "./speechbubble";
 import Suitcase from "./suitcase";
 
 const Card = ({ name, image, email }) => {
@@ -6,7 +6,7 @@ const Card = ({ name, image, email }) => {
     "w-72 h-96 rounded-lg hover:shadow-lg shadow-md text-black cursor-pointer ";
   //flex items-end
   const imagestyle = `w-full h-3/4 overflow-hidden object-cover rounded-t-lg`;
-
+//h-96
   return (
     <div class={cardstyle}>
       <img src={image} alt="image" class={imagestyle} />

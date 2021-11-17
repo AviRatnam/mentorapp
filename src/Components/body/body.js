@@ -5,23 +5,26 @@ import MagGlass from "./glass";
 import { useEffect, useState } from "react";
 
 const Body = () => {
-  const bodystyle = `px-52 pt-32 pb-10`;
+  const bodystyle = `lg:px-52 px-10 pt-32 pb-10`;
   const selectstyle =
     "text-2xl font-bold border-b-2 border-transparent focus:border-black text-gray-400 focus:text-black";
+  const loadbuttonstyle =
+    "bg-black text-white text-md font-bold px-4 py-3 rounded-lg hover:shadow-md ";
 
   const [data, setdata] = useState(null);
-  const [showdata, setshowdata] = useState(false);
+  const [showdata, setshowdata] = useState(true);
+  const [number, setnumber] = useState(16);
 
-  const API = "https://randomuser.me/api/?results=15";
+  const API = "https://randomuser.me/api/?results=" + number;
 
   useEffect(() => {
     fetch(API)
       .then((res) => res.json())
       .then((info) => {
         setdata(info);
-        setshowdata(true);
+        setshowdata(false);
       });
-  }, []);
+  }, [number]);
 
   return (
     <div class={bodystyle}>
@@ -45,8 +48,10 @@ const Body = () => {
           </div>
         </form>
       </div>
-      <div class="pt-10 lg:grid lg:grid-cols-4 grid-cols-2 gap-10">
-        {showdata &&
+      <div class="pt-10 grid lg:grid-cols-4 grid-cols-2 gap-10 md:pr-2">
+        {showdata ? (
+          <div class="text-3xl font-bold ">Loading...</div>
+        ) : (
           data.results.map((info, i) => (
             <div id={i}>
               <Card
@@ -55,9 +60,14 @@ const Body = () => {
                 email={info.email}
               />
             </div>
-          ))}
+          ))
+        )}
       </div>
-
+      <div class="grid justify-center pt-7">
+        <button class={loadbuttonstyle} onClick={() => setnumber(number + 8)}>
+          Load More
+        </button>
+      </div>
     </div>
   );
 };
